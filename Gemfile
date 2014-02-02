@@ -33,7 +33,7 @@ group :doc do
 end
 
 gem 'nokogiri'
-gem 'open-uri'
+require 'open-uri'
 group :development do
 	gem 'pry'
 end
