@@ -15,18 +15,19 @@ module PlayersHelper
 
 	def player_info(player)
 		info = {}
-		player_url = find_current_player_url(player) + "/profile"
+		p = find_current_player_url(player)
+		return info if p.nil?
+		player_url = p + "/profile"
 		page = Nokogiri::HTML(Typhoeus.get(player_url).body)
-		if page.nil?
-			return info
-		else
-			info[:img_url] = player_image(page)
-			info[:name] = player_name(page)
-			info[:college] = player_college(page)
-			info[:height] = player_height(page)
-			info[:weight] = player_weight(page)
-			return info
-		end
+
+		info[:img_url] = player_image(page)
+		info[:name] = player_name(page)
+		info[:college] = player_college(page)
+		info[:height] = player_height(page)
+		info[:weight] = player_weight(page)
+		info[:position] = player_position(page)
+		info[:number] = player_number(page)
+		return info
 	end
 
 	def player_name(noko)
@@ -53,5 +54,26 @@ module PlayersHelper
 		height = noko.xpath("//div[@class='player-info']/p[3]").text.delete("\n\r\t").split
 		height[1]
 	end
+
+	def player_position(noko)
+		position = noko.xpath("//div[@class='player-info']//span[@class='player-number']")
+		correct_position(position.text.split[1])
+	end
+
+	def correct_position(position)
+		case position
+		when "G", "T", "C"
+			return "O" << position
+		when "NT"
+			return "DT"
+		else
+			return position
+		end
+	end
+
+	def player_number(noko)
+		number = noko.xpath("//div[@class='player-info']//span[@class='player-number']")
+		number.text.split[0]
+	end	
 
 end
