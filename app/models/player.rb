@@ -20,7 +20,7 @@ class Player < ActiveRecord::Base
 
 	private
 
-  	def find_current_player_url(player)
+  	def self.find_current_player_url(player)
 		player = player.split.join("+")
 		url = "http://www.nfl.com/players/search?category=name&filter=#{player}&playerType=current"
 		search_page = Nokogiri::HTML(Typhoeus.get(url).body)
@@ -34,37 +34,37 @@ class Player < ActiveRecord::Base
 		end
 	end
 
-	def player_name(noko)
+	def self.player_name(noko)
 		name = noko.xpath("//div[@class='player-info']//span[@class='player-name']")
 		name[0].text.chop.chop
 	end
 
-	def player_college(noko)
+	def self.player_college(noko)
 		college = noko.xpath("//div[@class='player-info']/p[5]")
 		college.text.split[1]
 	end
 
-	def player_image(noko)
+	def self.player_image(noko)
 		photo = noko.xpath("//div[@class='player-photo']/img")
 		photo[0]['src']
 	end
 
-	def player_weight(noko)
+	def self.player_weight(noko)
 		weight = noko.xpath("//div[@class='player-info']/p[3]").text.delete("\n\r\t").split
 		weight[4]
 	end
 
-	def player_height(noko)
+	def self.player_height(noko)
 		height = noko.xpath("//div[@class='player-info']/p[3]").text.delete("\n\r\t").split
 		height[1]
 	end
 
-	def player_position(noko)
+	def self.player_position(noko)
 		position = noko.xpath("//div[@class='player-info']//span[@class='player-number']")
 		correct_position(position.text.split[1])
 	end
 
-	def correct_position(position)
+	def self.correct_position(position)
 		case position
 		when "G", "T", "C"
 			return "O" << position
@@ -75,7 +75,7 @@ class Player < ActiveRecord::Base
 		end
 	end
 
-	def player_number(noko)
+	def self.player_number(noko)
 		number = noko.xpath("//div[@class='player-info']//span[@class='player-number']")
 		number.text.split[0]
 	end	
