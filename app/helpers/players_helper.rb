@@ -17,12 +17,16 @@ module PlayersHelper
 		info = {}
 		player_url = find_current_player_url(player) + "/profile"
 		page = Nokogiri::HTML(Typhoeus.get(player_url).body)
-		info[:img_url] = player_image(page)
-		info[:name] = player_name(page)
-		info[:college] = player_college(page)
-		info[:height] = player_height(page)
-		info[:weight] = player_weight(page)
-		return info
+		if page.nil?
+			return info
+		else
+			info[:img_url] = player_image(page)
+			info[:name] = player_name(page)
+			info[:college] = player_college(page)
+			info[:height] = player_height(page)
+			info[:weight] = player_weight(page)
+			return info
+		end
 	end
 
 	def player_name(noko)
