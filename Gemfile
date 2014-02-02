@@ -33,10 +33,12 @@ group :doc do
 end
 
 gem 'nokogiri'
-require 'open-uri'
+
 group :development do
 	gem 'pry'
 end
+
+gem 'typhoeus'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
