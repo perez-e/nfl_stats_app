@@ -18,6 +18,28 @@ class Player < ActiveRecord::Base
 		return info
 	end
 
+	def self.careerstats(player, label)
+		info = []
+		p = find_current_player_url(player)
+		return info if p.nil?
+		player_url = p + "/careerstats"
+		page = Nokogiri::HTML(Typhoeus.get(player_url).body)
+
+		table = page.xpath("//table[contains(@summary,'#{label}')]/tbody/tr[not(@class)]")
+		table.each do |node|
+			if !node.text.blank?
+				stats = []
+				node.xpath("./td").each do |tr|
+					stat = tr.text
+					stat.delete!("\r\t\n")
+					stats << stat
+				end
+				info << stats
+			end
+		end
+		return info
+	end
+
 	private
 
   	def self.find_current_player_url(player)
@@ -80,5 +102,5 @@ class Player < ActiveRecord::Base
 		number = noko.xpath("//div[@class='player-info']//span[@class='player-number']")
 		number.text.split[0]
 	end	
-
+	
 end
