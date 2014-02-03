@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: players
+#
+#  id          :integer          not null, primary key
+#  name        :string(255)
+#  height      :string(255)
+#  weight      :string(255)
+#  college     :string(255)
+#  number      :string(255)
+#  position_id :integer
+#  created_at  :datetime
+#  updated_at  :datetime
+#  img_url     :string(255)
+#
+
 class Player < ActiveRecord::Base
   belongs_to :position
 
