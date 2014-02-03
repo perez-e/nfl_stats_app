@@ -13,7 +13,7 @@ class Player < ActiveRecord::Base
 		info[:college] = player_college(page)
 		info[:height] = player_height(page)
 		info[:weight] = player_weight(page)
-		info[:position] = player_position(page)
+		info[:position_id] = player_position(page).id
 		info[:number] = player_number(page)
 		return info
 	end
@@ -61,7 +61,8 @@ class Player < ActiveRecord::Base
 
 	def self.player_position(noko)
 		position = noko.xpath("//div[@class='player-info']//span[@class='player-number']")
-		correct_position(position.text.split[1])
+		pos = correct_position(position.text.split[1])
+		Position.find_by_name(pos)
 	end
 
 	def self.correct_position(position)
