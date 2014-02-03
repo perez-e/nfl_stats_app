@@ -18,6 +18,7 @@ class Player < ActiveRecord::Base
   belongs_to :position
   has_many :season_passing_stats
   has_many :season_receiving_stats
+  has_many :season_rushing_stats
 
 	def self.player_info(player)
 		info = {}
