@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140203195425) do
+ActiveRecord::Schema.define(version: 20140203204705) do
 
   create_table "players", force: true do |t|
     t.string   "name"
@@ -78,5 +78,27 @@ ActiveRecord::Schema.define(version: 20140203195425) do
   end
 
   add_index "season_receiving_stats", ["player_id"], name: "index_season_receiving_stats_on_player_id"
+
+  create_table "season_rushing_stats", force: true do |t|
+    t.integer  "year"
+    t.string   "team"
+    t.integer  "g"
+    t.integer  "att"
+    t.float    "att_p_g"
+    t.integer  "yds"
+    t.float    "avg_rush"
+    t.float    "yds_p_g"
+    t.integer  "td"
+    t.string   "lng"
+    t.integer  "first"
+    t.integer  "twenty"
+    t.integer  "forty"
+    t.integer  "fum"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "player_id"
+  end
+
+  add_index "season_rushing_stats", ["player_id"], name: "index_season_rushing_stats_on_player_id"
 
 end
