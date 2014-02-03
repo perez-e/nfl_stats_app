@@ -16,6 +16,7 @@
 
 class Player < ActiveRecord::Base
   belongs_to :position
+  has_many :season_passing_stats
 
 	def self.player_info(player)
 		info = {}
