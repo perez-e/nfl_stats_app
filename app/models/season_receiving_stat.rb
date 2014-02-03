@@ -22,7 +22,7 @@
 #
 
 class SeasonReceivingStat < ActiveRecord::Base
-  belongs_to :player
+    belongs_to :player
 
   	@@element_indices = {year:0, team:1, g:2, rec:3, yds:4, avg_rec:5, yds_p_g:6, lng:7,
   						 td:8, twenty:9, forty:10, first:11, fum:12}
@@ -37,14 +37,14 @@ class SeasonReceivingStat < ActiveRecord::Base
     end
 
     private
-    
+
     def self.receiving_stat(player)
     	receiving = []
     	stats = Player.careerstats(player, 'Receiving')
     	stats.each do |stat|
     		rec_hash = {}
     		@@element_indices.each do |k, v|
-    			rec_hash[k] = stat[v]
+    			rec_hash[k] = stat[v].delete(",")
     		end
     		receiving << rec_hash
     	end

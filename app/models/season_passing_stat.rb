@@ -48,7 +48,7 @@ class SeasonPassingStat < ActiveRecord::Base
     	stats.each do |stat|
     		pass_hash = {}
     		@@element_indices.each do |k, v|
-    			pass_hash[k] = stat[v]
+    			pass_hash[k] = stat[v].delete(",")
     		end
     		passing << pass_hash
     	end
