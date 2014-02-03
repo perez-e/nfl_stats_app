@@ -13,8 +13,8 @@ class CreateSeasonPassingStats < ActiveRecord::Migration
       t.integer :td
       t.integer :int
       t.string :lng
-      t.integer :20
-      t.integer :40
+      t.integer :twenty
+      t.integer :forty
       t.integer :sck
       t.float :rating
 
