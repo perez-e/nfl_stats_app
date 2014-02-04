@@ -29,6 +29,7 @@ class Player < ActiveRecord::Base
 		player_url = p + "/profile"
 		page = Nokogiri::HTML(Typhoeus.get(player_url).body)
 
+		info[:nfl_id] = player_url.split("/")[-2]
 		info[:img_url] = player_image(page)
 		info[:name] = player_name(page)
 		info[:college] = player_college(page)
