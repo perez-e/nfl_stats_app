@@ -12,6 +12,7 @@
 #  created_at  :datetime
 #  updated_at  :datetime
 #  img_url     :string(255)
+#  nfl_id      :integer
 #
 
 class Player < ActiveRecord::Base
