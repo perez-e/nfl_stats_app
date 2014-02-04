@@ -1,0 +1,41 @@
+<table>
+	<thead>
+		<tr><td colspan='14'>Rushing</td></tr>
+		<tr>
+			<td>Year</td>
+			<td>Team</td>
+			<td>G</td>
+			<td>Att</td>
+			<td>Att/G</td>
+			<td>Yds</td>
+			<td>Avg</td>
+			<td>Yds/G</td>
+			<td>TD</td>
+			<td>Lng</td>
+			<td>1st</td>
+			<td>20+</td>
+			<td>40+</td>
+			<td>Fum</td>
+		</tr>
+	</thead>
+	<tbody>
+		<% player.season_rushing_stats.each  do |rush| %>
+			<tr>
+				<td><%= rush.year %></td>
+				<td><%= rush.team %></td>
+				<td><%= rush.g %></td>
+				<td><%= rush.att %></td>
+				<td><%= rush.att_p_g %></td>
+				<td><%= rush.yds %></td>
+				<td><%= rush.avg_rush %></td>
+				<td><%= rush.yds_p_g %></td>
+				<td><%= rush.td %></td>
+				<td><%= rush.lng %></td>
+				<td><%= rush.first %></td>
+				<td><%= rush.twenty %></td>
+				<td><%= rush.forty %></td>
+				<td><%= rush.fum %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

@@ -1,0 +1,35 @@
+<table>
+	<thead>
+		<tr><td colspan='11'>Defensive</td></tr>
+		<tr>
+			<td>Year</td>
+			<td>Team</td>
+			<td>G</td>
+			<td>Comb</td>
+			<td>Solo</td>
+			<td>Ast</td>
+			<td>Sck</td>
+			<td>Sfty</td>
+			<td>PDef</td>
+			<td>Int</td>
+			<td>TD</td>
+		</tr>
+	</thead>
+	<tbody>
+		<% player.season_defensive_stats.each  do |d| %>
+			<tr>
+				<td><%= d.year %></td>
+				<td><%= d.team %></td>
+				<td><%= d.g %></td>
+				<td><%= d.comb %></td>
+				<td><%= d.solo %></td>
+				<td><%= d.ast %></td>
+				<td><%= d.sck %></td>
+				<td><%= d.sfty %></td>
+				<td><%= d.pdef %></td>
+				<td><%= d.int %></td>
+				<td><%= d.td %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
