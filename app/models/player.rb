@@ -83,7 +83,7 @@ class Player < ActiveRecord::Base
 
 	def self.player_college(noko)
 		college = noko.xpath("//div[@class='player-info']/p[5]")
-		college.text.split[1]
+		college.text.split[1..-1].join(" ")
 	end
 
 	def self.player_image(noko)
