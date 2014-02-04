@@ -1,39 +1,54 @@
-<table class="table table-striped table-responsive">
-	<thead>
-		<tr><td colspan='13'>Receiving</td></tr>
-		<tr>
-			<td>Year</td>
-			<td>Team</td>
-			<td>G</td>
-			<td>Rec</td>
-			<td>Yds</td>
-			<td>Avg</td>
-			<td>Yds/G</td>
-			<td>Lng</td>
-			<td>TD</td>
-			<td>20+</td>
-			<td>40+</td>
-			<td>1st</td>
-			<td>Fum</td>
-		</tr>
-	</thead>
-	<tbody>
-		<% player.season_receiving_stats.each  do |rec| %>
-			<tr>
-				<td><%= rec.year %></td>
-				<td><%= rec.team %></td>
-				<td><%= rec.g %></td>
-				<td><%= rec.rec %></td>
-				<td><%= rec.yds %></td>
-				<td><%= rec.avg_rec %></td>
-				<td><%= rec.yds_p_g %></td>
-				<td><%= rec.lng %></td>
-				<td><%= rec.td %></td>
-				<td><%= rec.twenty %></td>
-				<td><%= rec.forty %></td>
-				<td><%= rec.first %></td>
-				<td><%= rec.fum %></td>
-			</tr>
-		<% end %>
-	</tbody>
-</table>
+<div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+          Tabular Data
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse">
+      <div class="panel-body">
+      		<table class="table table-striped table-responsive">
+				<thead>
+					<tr><td colspan='13'>Receiving</td></tr>
+					<tr>
+						<td>Year</td>
+						<td>Team</td>
+						<td>G</td>
+						<td>Rec</td>
+						<td>Yds</td>
+						<td>Avg</td>
+						<td>Yds/G</td>
+						<td>Lng</td>
+						<td>TD</td>
+						<td>20+</td>
+						<td>40+</td>
+						<td>1st</td>
+						<td>Fum</td>
+					</tr>
+				</thead>
+				<tbody>
+					<% player.season_receiving_stats.each  do |rec| %>
+						<tr>
+							<td><%= rec.year %></td>
+							<td><%= rec.team %></td>
+							<td><%= rec.g %></td>
+							<td><%= rec.rec %></td>
+							<td><%= rec.yds %></td>
+							<td><%= rec.avg_rec %></td>
+							<td><%= rec.yds_p_g %></td>
+							<td><%= rec.lng %></td>
+							<td><%= rec.td %></td>
+							<td><%= rec.twenty %></td>
+							<td><%= rec.forty %></td>
+							<td><%= rec.first %></td>
+							<td><%= rec.fum %></td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+      </div>
+    </div>
+  </div>
+</div>
