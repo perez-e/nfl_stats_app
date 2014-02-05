@@ -1,3 +1,66 @@
 // Place all the styles related to the players controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+body.container {
+	background-color: #f7fcfc;
+}
+
+nav.navbar {
+	background-color: #46A2CC;
+}
+
+.navbar-default .navbar-nav>li>a {
+	color: #B2152B;
+}
+
+
+.navbar-default .navbar-brand{
+	color: #B2152B;
+}
+
+.color {
+	color: #B2152B;	
+}
+
+.navbar-default .navbar-nav>li>a:hover {
+	color: #FFF50A;
+}
+
+
+.navbar-default .navbar-brand:hover{
+	color: #FFF50A;
+}
+
+.btn-color {
+	color: #FFF50A;	
+	background-color: #B2152B;
+}
+
+
+.btn-color:hover {
+	color: #FFF50A;	
+	background-color: #1581B2;
+}
+
+.index-container {
+	text-align: center;
+	margin-top: 165px;
+}
+
+.sign-up {
+	color: #1581B2;
+}
+
+.sign-up:hover {
+	text-decoration: none;
+	color: #FFF50A;	
+}
+
+.fun {
+	margin-top: 50px;
+}
+
+
+
+

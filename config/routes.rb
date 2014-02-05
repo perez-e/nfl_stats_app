@@ -1,3 +1,5 @@
 NflApp::Application.routes.draw do
-  get "players/:id", to: "players#show"
+	root to: "players#index"
+    get "players/:id", to: "players#show"
+    post "/players", to: "players#create"
 end
