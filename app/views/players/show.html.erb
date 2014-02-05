@@ -1,3 +1,4 @@
+<%= render 'layouts/nav' %>
 <h1><%= @player.name %> <p><%= @player.position.name %> <%= @player.number %></p></h1>
 <h3>College: <%= @player.college %></h3>
 <h3><strong>Height:</strong> <%= @player.height %> <strong>Weight:</strong> <%= @player.weight %></h3>
@@ -5,16 +6,21 @@
 
 <!-- Nav tabs -->
 <ul class="nav nav-tabs">
-  <li class="active"><a href="#passing" data-toggle="tab">Passing</a></li>
-  <li><a href="#rushing" data-toggle="tab">Rushing</a></li>
-  <li><a href="#receiving" data-toggle="tab">Receiving</a></li>
-  <li><a href="#defensive" data-toggle="tab">Defensive</a></li>
+  <%= nav_tab_stat(@player.position.name).html_safe %>
 </ul>
+
+<% a = nav_tab_active(@player.position.name) %>
 
 <!-- Tab panes -->
 <div class="tab-content">
-  <div class="tab-pane fade in active" id="passing"><%= render partial: 'passing', locals: {player: @player} %></div>
-  <div class="tab-pane fade" id="rushing"><%= render partial: 'rushing', locals: {player: @player} %></div>
-  <div class="tab-pane fade" id="receiving"><%= render partial: 'receiving', locals: {player: @player} %></div>
-  <div class="tab-pane fade" id="defensive"><%= render partial: 'defensive', locals: {player: @player} %></div>
+  <div class="tab-pane fade <%= a[0] %>" id="passing">
+  	<%= render partial: 'passing', locals: {player: @player} %></div>
+  <div class="tab-pane fade <%= a[1] %>" id="rushing">
+  	<%= render partial: 'rushing', locals: {player: @player} %></div>
+  <div class="tab-pane fade <%= a[2] %>" id="receiving">
+  	<%= render partial: 'receiving', locals: {player: @player} %></div>
+  <div class="tab-pane fade <%= a[3] %>" id="defensive">
+  	<%= render partial: 'defensive', locals: {player: @player} %></div>
 </div>
+
+
