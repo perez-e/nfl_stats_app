@@ -5,16 +5,16 @@
 
 <!-- Nav tabs -->
 <ul class="nav nav-tabs">
-  <li class="active"><a href="#home" data-toggle="tab">Passing</a></li>
-  <li><a href="#profile" data-toggle="tab">Rushing</a></li>
-  <li><a href="#messages" data-toggle="tab">Receiving</a></li>
-  <li><a href="#settings" data-toggle="tab">Defensive</a></li>
+  <li class="active"><a href="#passing" data-toggle="tab">Passing</a></li>
+  <li><a href="#rushing" data-toggle="tab">Rushing</a></li>
+  <li><a href="#receiving" data-toggle="tab">Receiving</a></li>
+  <li><a href="#defensive" data-toggle="tab">Defensive</a></li>
 </ul>
 
 <!-- Tab panes -->
 <div class="tab-content">
-  <div class="tab-pane fade in active" id="home"><%= render partial: 'passing', locals: {player: @player} %></div>
-  <div class="tab-pane fade" id="profile"><%= render partial: 'rushing', locals: {player: @player} %></div>
-  <div class="tab-pane fade" id="messages"><%= render partial: 'receiving', locals: {player: @player} %></div>
-  <div class="tab-pane fade" id="settings"><%= render partial: 'defensive', locals: {player: @player} %></div>
+  <div class="tab-pane fade in active" id="passing"><%= render partial: 'passing', locals: {player: @player} %></div>
+  <div class="tab-pane fade" id="rushing"><%= render partial: 'rushing', locals: {player: @player} %></div>
+  <div class="tab-pane fade" id="receiving"><%= render partial: 'receiving', locals: {player: @player} %></div>
+  <div class="tab-pane fade" id="defensive"><%= render partial: 'defensive', locals: {player: @player} %></div>
 </div>

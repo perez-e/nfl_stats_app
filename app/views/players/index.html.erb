@@ -1,5 +1,4 @@
 <%= render partial: "layouts/nav" %>
-
 <div class='index-container'>
 	<h1 class="color">Welcome to the NFL Database</h1>
 	<%= form_for :player, url: "/players" do |f| %>
@@ -70,7 +69,7 @@
 	    </div>
 	    <div class='modal-footer'>
 		    	<button type="button" class="btn btn-default btn-color" data-dismiss="modal">Close</button>
-		        <%= f.submit 'Sign Up', class: 'btn btn-default btn-color' %>
+		        <%= f.submit 'Sign In', class: 'btn btn-default btn-color' %>
 	        <% end %>
 	    </div>
     </div>

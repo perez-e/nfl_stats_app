@@ -21,8 +21,35 @@
         <%= token_tag form_authenticity_token %>
       </form>
       <ul class="nav navbar-nav navbar-right">
-        <li><a class="color" data-toggle="modal" data-target="#signup" href="#">Sign Up</a></li>
-        <li><a class="color" data-toggle="modal" data-target=".bs-modal-sm" href='#'>Sign In</a></li>
+        <% if signed_in? %>
+          <li><a class="color" href="#" class="dropdown-toggle" data-toggle="dropdown">Favs
+                    <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li><a href="#">Separated link</a></li>
+                <li class="divider"></li>
+                <li><a href='#'>Divide Me</a></li>
+              </ul>
+          </li>
+          <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <%= current_user.first_name + " " + current_user.last_name %> 
+              <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li class="divider"></li>
+            <li><%= link_to 'Sign Out', '/sessions', method: :delete, class: 'color'  %></li>
+          </ul></li>
+        <% else %>
+          <li><a class="color" data-toggle="modal" data-target="#signup" href="#">Sign Up</a></li>
+          <li><a class="color" data-toggle="modal" data-target=".bs-modal-sm" href='#'>Sign In</a></li>
+        <% end %>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
