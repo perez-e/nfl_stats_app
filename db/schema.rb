@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140204202803) do
+ActiveRecord::Schema.define(version: 20140205064856) do
 
   create_table "players", force: true do |t|
     t.string   "name"
@@ -120,5 +120,14 @@ ActiveRecord::Schema.define(version: 20140204202803) do
   end
 
   add_index "season_rushing_stats", ["player_id"], name: "index_season_rushing_stats_on_player_id"
+
+  create_table "users", force: true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "password_digest"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end
