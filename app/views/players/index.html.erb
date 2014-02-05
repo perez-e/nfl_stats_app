@@ -19,8 +19,8 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title" id="myModalLabel">Sign Up</h4>
       </div>
+      <%= form_for :user, url: '/users' do |f| %>
       <div class="modal-body">
-        <%= form_for :user, url: '/users' do |f| %>
         	<div class='form-group'>
 	        	<%= f.label 'First' %>
 	        	<%= f.text_field :first_name, placeholder: 'first name' %>
@@ -43,8 +43,8 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-default btn-color" data-dismiss="modal">Close</button>
         <%= f.submit 'Sign Up', class: 'btn btn-default btn-color' %>
-        <% end %>
       </div>
+      <% end %>
     </div>
   </div>
 </div>
