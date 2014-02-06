@@ -5,4 +5,5 @@ NflApp::Application.routes.draw do
     post "/users", to: "users#create"
     post "/sessions", to: "sessions#create"
     delete '/sessions', to: 'sessions#destroy'
+    get '/users/:id', to: 'users#show'
 end
