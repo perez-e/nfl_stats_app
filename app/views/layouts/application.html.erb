@@ -10,6 +10,12 @@
 
 </head>
 <body class="container">
+<%if flash[:error]%>
+	<h4 class='red center'><%= flash[:error] %></h4>
+<% end %>
+<%if flash[:success]%>
+	<h4 class='green center'><%= flash[:success] %></h4>
+<% end %>
 
 <%= yield %>
 

@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 			redirect_to "/users/#{u.id}"
 		else
 			# Create an error message and re-render the signin form.
-			flash.now[:error]='Invalid email/password combination'
+			flash[:error]='Invalid User Credentials'
 			redirect_to "/"
 		end
 

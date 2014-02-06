@@ -1,2 +1,14 @@
 <%= render 'layouts/nav' %>
-<h1> Welcome back, <%= @user.first_name %>!</h1>
+
+<div id='userPill' >
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="/">Home</a></li>
+  <li><a href="#">Fantasy Team</a></li>
+  <li><a href="#">Favorite Players</a></li>
+  <li><a href="#">Compare</a></li>
+
+</ul></div>
+
+<div class='jumbotron'>
+	<h1 id='color'> Welcome back, <%= @user.first_name %>!</h1>
+</div>

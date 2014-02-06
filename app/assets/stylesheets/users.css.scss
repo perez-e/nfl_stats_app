@@ -1,3 +1,24 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+ #userPill {
+	float: left;
+	width: 150px;
+}
+
+.jumbotron {
+	text-align: center;
+}
+
+#color {
+	color: #B2152B;
+}
+
+.nav-pills > li > a:hover {
+	background-color: #46A2CC;
+	color: #FFF50A;
+}
+.nav-pills > li > a {
+	color: #1581B2;
+}
