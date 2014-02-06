@@ -70,5 +70,35 @@ svg {
 	text-align: center;
 }
 
+.player-pic {
+	float: left;
+	height: 170px;
+}
+
+.player-info {
+	height: 195px;
+	width: 75%;
+	margin: 10px auto;
+	background-color: rgba(21,129, 178, .5);
+	padding: 10px 25px;
+	position: relative;
+}
+
+.player > * {
+	margin: 0 auto;
+	
+}
+
+.player {
+	width: 300px;
+	margin: 10px auto;
+}
+
+.btn-special {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+}
+
 
 

@@ -33,4 +33,22 @@ class PlayersController < ApplicationController
 			redirect_to root_path
 		end
 	end
+
+	def favorite 
+		p = Player.find_by_nfl_id(params[:nfl_id])
+		user = current_user
+		user.players << p
+		flash[:success] = "#{p.name} was added!"
+
+		redirect_to action: :show
+	end
+
+	def remove 
+		p = Player.find_by_nfl_id(params[:nfl_id])
+		user = current_user
+		user.players.destroy p
+		flash[:success] = "#{p.name} was destroyed!"
+
+		redirect_to action: :show
+	end
 end
