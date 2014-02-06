@@ -6,6 +6,7 @@ class PlayersController < ApplicationController
 		@player = Player.find_by_nfl_id(params[:nfl_id])
 		gon.player_receiving = @player.season_receiving_stats
 		gon.player_rushing = @player.season_rushing_stats
+		gon.player_passing = @player.season_passing_stats
 	end
 
 	def create
