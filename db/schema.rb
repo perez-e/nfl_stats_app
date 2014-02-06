@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20140205065542) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "players", force: true do |t|
     t.string   "name"
     t.string   "height"
@@ -26,7 +29,7 @@ ActiveRecord::Schema.define(version: 20140205065542) do
     t.integer  "nfl_id"
   end
 
-  add_index "players", ["position_id"], name: "index_players_on_position_id"
+  add_index "players", ["position_id"], name: "index_players_on_position_id", using: :btree
 
   create_table "positions", force: true do |t|
     t.string   "name"
@@ -51,7 +54,7 @@ ActiveRecord::Schema.define(version: 20140205065542) do
     t.datetime "updated_at"
   end
 
-  add_index "season_defensive_stats", ["player_id"], name: "index_season_defensive_stats_on_player_id"
+  add_index "season_defensive_stats", ["player_id"], name: "index_season_defensive_stats_on_player_id", using: :btree
 
   create_table "season_passing_stats", force: true do |t|
     t.integer  "year"
@@ -76,7 +79,7 @@ ActiveRecord::Schema.define(version: 20140205065542) do
     t.string   "team"
   end
 
-  add_index "season_passing_stats", ["player_id"], name: "index_season_passing_stats_on_player_id"
+  add_index "season_passing_stats", ["player_id"], name: "index_season_passing_stats_on_player_id", using: :btree
 
   create_table "season_receiving_stats", force: true do |t|
     t.integer  "year"
@@ -97,7 +100,7 @@ ActiveRecord::Schema.define(version: 20140205065542) do
     t.datetime "updated_at"
   end
 
-  add_index "season_receiving_stats", ["player_id"], name: "index_season_receiving_stats_on_player_id"
+  add_index "season_receiving_stats", ["player_id"], name: "index_season_receiving_stats_on_player_id", using: :btree
 
   create_table "season_rushing_stats", force: true do |t|
     t.integer  "year"
@@ -119,7 +122,7 @@ ActiveRecord::Schema.define(version: 20140205065542) do
     t.integer  "player_id"
   end
 
-  add_index "season_rushing_stats", ["player_id"], name: "index_season_rushing_stats_on_player_id"
+  add_index "season_rushing_stats", ["player_id"], name: "index_season_rushing_stats_on_player_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "first_name"
