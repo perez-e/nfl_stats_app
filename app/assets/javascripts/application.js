@@ -343,6 +343,351 @@ nv.addGraph(function() {
     return chart;
 });
 
+function PassingYds(player) {
+    var series1 = [];
+    for(var i =0; i < player.length; i ++) {
+        series1.push({
+            x: player[i].year, y: player[i].yds
+        });
+    }
 
+    return [
+        {
+            key: "Passing Yards",
+            values: series1,
+            color: "#0000ff"
+        }
+    ];
+}
 
+function PassingTD(player) {
+    var series1 = [];
+    for(var i =0; i < player.length; i ++) {
+        series1.push({
+            x: player[i].year, y: player[i].td
+        });
+    }
+
+    return [
+        {
+            key: "Passing TD",
+            values: series1,
+            color: "#0000ff"
+        }
+    ];
+}
+
+function PassingYdsPerGame(player) {
+    var series1 = [];
+    for(var i =0; i < player.length; i ++) {
+        series1.push({
+            x: player[i].year, y: player[i].yds_p_g
+        });
+    }
+
+    return [
+        {
+            key: "Passing Yards Per Game",
+            values: series1,
+            color: "#0000ff"
+        }
+    ];
+}
+
+function PassingInt(player) {
+    var series1 = [];
+    for(var i =0; i < player.length; i ++) {
+        series1.push({
+            x: player[i].year, y: player[i].int
+        });
+    }
+
+    return [
+        {
+            key: "Interceptions",
+            values: series1,
+            color: "#0000ff"
+        }
+    ];
+}
+
+function Rating(player) {
+    var series1 = [];
+    for(var i =0; i < player.length; i ++) {
+        series1.push({
+            x: player[i].year, y: player[i].rating
+        });
+    }
+
+    return [
+        {
+            key: "QB Rating",
+            values: series1,
+            color: "#0000ff"
+        }
+    ];
+}
+
+nv.addGraph(function() {
+    var chart = nv.models.lineChart();
+
+    chart.xAxis
+        .axisLabel("Year");
+
+    chart.yAxis
+        .axisLabel("Y-axis Label")
+        .tickFormat(d3.format("d"))
+        ;
+
+    d3.select("svg.passing-yds")
+        .datum(PassingYds(gon.player_passing))
+        .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(
+            function() {
+                chart.update();
+            }
+        );
+
+    return chart;
+});
+
+nv.addGraph(function() {
+    var chart = nv.models.lineChart();
+
+    chart.xAxis
+        .axisLabel("Year");
+
+    chart.yAxis
+        .axisLabel("Y-axis Label")
+        .tickFormat(d3.format("d"))
+        ;
+
+    d3.select("svg.passing-td")
+        .datum(PassingTD(gon.player_passing))
+        .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(
+            function() {
+                chart.update();
+            }
+        );
+
+    return chart;
+});
+
+nv.addGraph(function() {
+    var chart = nv.models.lineChart();
+
+    chart.xAxis
+        .axisLabel("Year");
+
+    chart.yAxis
+        .axisLabel("Y-axis Label")
+        .tickFormat(d3.format("d"))
+        ;
+
+    d3.select("svg.passing-yds-g")
+        .datum(PassingYdsPerGame(gon.player_passing))
+        .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(
+            function() {
+                chart.update();
+            }
+        );
+
+    return chart;
+});
+
+nv.addGraph(function() {
+    var chart = nv.models.lineChart();
+
+    chart.xAxis
+        .axisLabel("Year");
+
+    chart.yAxis
+        .axisLabel("Y-axis Label")
+        .tickFormat(d3.format("d"))
+        ;
+
+    d3.select("svg.interception")
+        .datum(PassingInt(gon.player_passing))
+        .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(
+            function() {
+                chart.update();
+            }
+        );
+
+    return chart;
+});
+
+nv.addGraph(function() {
+    var chart = nv.models.lineChart();
+
+    chart.xAxis
+        .axisLabel("Year");
+
+    chart.yAxis
+        .axisLabel("Y-axis Label")
+        .tickFormat(d3.format("d"))
+        ;
+
+    d3.select("svg.rating")
+        .datum(Rating(gon.player_passing))
+        .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(
+            function() {
+                chart.update();
+            }
+        );
+
+    return chart;
+});
+
+function Tackles(player) {
+    var series1 = [];
+    var series2 = [];
+    var series3 = [];
+    for(var i =0; i < player.length; i ++) {
+        series1.push({
+            x: player[i].year, y: player[i].solo
+        });
+
+        series2.push({
+            x: player[i].year, y: player[i].ast
+        });
+
+        series3.push({
+            x: player[i].year, y: player[i].comb
+        });
+    }
+
+    return [
+        {
+            key: "Solo Tackles",
+            values: series1,
+            color: "#0000ff"
+        },
+        {
+            key: "Assisted Tackles",
+            values: series2,
+            color: "#46A2CC"
+        },
+        {
+            key: "Combined",
+            values: series3,
+            color: "#B2152B"
+        }
+    ];
+}
+
+function Sacks(player) {
+    var series1 = [];
+    for(var i =0; i < player.length; i ++) {
+        series1.push({
+            x: player[i].year, y: player[i].sck
+        });
+    }
+
+    return [
+        {
+            key: "Sacks",
+            values: series1,
+            color: "#0000ff"
+        }
+    ];
+}
+
+function DefensiveInt(player) {
+    var series1 = [];
+    for(var i =0; i < player.length; i ++) {
+        series1.push({
+            x: player[i].year, y: player[i].int
+        });
+    }
+
+    return [
+        {
+            key: "Defensive Interceptions",
+            values: series1,
+            color: "#0000ff"
+        }
+    ];
+}
+
+nv.addGraph(function() {
+    var chart = nv.models.lineChart();
+
+    chart.xAxis
+        .axisLabel("Year");
+
+    chart.yAxis
+        .axisLabel("Y-axis Label")
+        .tickFormat(d3.format("d"))
+        ;
+
+    d3.select("svg.tackles")
+        .datum(Tackles(gon.player_defensive))
+        .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(
+            function() {
+                chart.update();
+            }
+        );
+
+    return chart;
+});
+
+nv.addGraph(function() {
+    var chart = nv.models.lineChart();
+
+    chart.xAxis
+        .axisLabel("Year");
+
+    chart.yAxis
+        .axisLabel("Y-axis Label")
+        .tickFormat(d3.format("d"))
+        ;
+
+    d3.select("svg.sacks")
+        .datum(Sacks(gon.player_defensive))
+        .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(
+            function() {
+                chart.update();
+            }
+        );
+
+    return chart;
+});
+
+nv.addGraph(function() {
+    var chart = nv.models.lineChart();
+
+    chart.xAxis
+        .axisLabel("Year");
+
+    chart.yAxis
+        .axisLabel("Y-axis Label")
+        .tickFormat(d3.format("d"))
+        ;
+
+    d3.select("svg.d-int")
+        .datum(DefensiveInt(gon.player_defensive))
+        .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(
+            function() {
+                chart.update();
+            }
+        );
+
+    return chart;
+});
 

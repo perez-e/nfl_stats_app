@@ -7,6 +7,7 @@ class PlayersController < ApplicationController
 		gon.player_receiving = @player.season_receiving_stats
 		gon.player_rushing = @player.season_rushing_stats
 		gon.player_passing = @player.season_passing_stats
+		gon.player_defensive = @player.season_defensive_stats
 	end
 
 	def create
