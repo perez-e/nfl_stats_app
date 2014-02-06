@@ -14,7 +14,8 @@
 
 class User < ActiveRecord::Base
 	has_secure_password
-
+	has_many :user_players
+	has_many :players, through: :user_players
 	before_save :create_remember_token
 
     private

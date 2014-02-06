@@ -17,6 +17,8 @@
 
 class Player < ActiveRecord::Base
   belongs_to :position
+  has_many :user_players
+  has_many :users, through: :user_players
   has_many :season_passing_stats
   has_many :season_receiving_stats
   has_many :season_rushing_stats
