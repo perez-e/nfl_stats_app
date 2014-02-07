@@ -1,0 +1,9 @@
+<div id='userPill' >
+<ul class="nav nav-pills nav-stacked">
+  <li><a href="/">Home</a></li>
+  <li><a href="#">Fantasy Team</a></li>
+  <li><a href="#">Favorite Players</a></li>
+  <li><a href="#">Compare</a></li>
+  <li><%= link_to "Delete Account", "/users/#{current_user.id}", method: :delete %></li>
+
+</ul></div>

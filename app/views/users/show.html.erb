@@ -1,15 +1,5 @@
 <%= render 'layouts/nav' %>
-
-<div id='userPill' >
-<ul class="nav nav-pills nav-stacked">
-  <li><a href="/">Home</a></li>
-  <li><a href="#">Fantasy Team</a></li>
-  <li><a href="#">Favorite Players</a></li>
-  <li><a href="#">Compare</a></li>
-  <li><%= link_to "Delete Account", "/users/#{current_user.id}", method: :delete %></li>
-
-</ul></div>
-
+<%= render 'nav_stacked' %>
 <div class='jumbotron'>
-	<h1 id='color'> Welcome back, <%= @user.first_name %>!</h1>
+	<h1 id='color'> Welcome, <%= @user.first_name %>!</h1>
 </div>
