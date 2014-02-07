@@ -16,7 +16,7 @@
  	height: 51px;
  }
 
-nav.navbar-fixed-bottom >{
- 	width: 80%;
- 	margin: 0;
+.navbar .navbar-default .bottom {
+	position: fixed;
+	bottom: 0;
  }
