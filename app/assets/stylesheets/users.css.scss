@@ -22,3 +22,29 @@
 .nav-pills > li > a {
 	color: #1581B2;
 }
+
+.jumbotron {
+	height: 210px;
+}
+
+.clear {
+	clear: left;
+}
+
+.favorite {
+	background-color: #1581B2;
+	padding: 5px;
+	margin: 8px .5%;
+	border-radius: 5px;
+	float: left;
+	width: 24%;
+}
+
+.favorite > h4 > a {
+	color: #B2152B
+}
+
+.favorite a:hover {
+	color: #FFF50A;
+	text-decoration: none;
+}

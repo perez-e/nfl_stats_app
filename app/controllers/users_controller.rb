@@ -27,4 +27,8 @@ class UsersController < ApplicationController
 
 		redirect_to "/"
 	end
+
+	def favorite
+		@players = current_user.players
+	end
 end
