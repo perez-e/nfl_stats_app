@@ -14,10 +14,17 @@ class UsersController < ApplicationController
 			redirect_to "/"
 		end
 
-		redirect_to "/"
 	end
 
 	def show 
 		@user = User.find(params[:id])
+	end
+
+	def destroy 
+		user = User.find(params[:id])
+		sign_out
+		user.destroy
+
+		redirect_to "/"
 	end
 end
