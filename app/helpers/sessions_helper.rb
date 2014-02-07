@@ -24,7 +24,7 @@ module SessionsHelper
       # to be able to redirect after successful sign in.
       session[:return_to] = request.url
       # prompt sign in page
-      redirect_to signin_url, notice: "Please sign in."
+      redirect_to "/", notice: "Please sign in."
     end
   end
 

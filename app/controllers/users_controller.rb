@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+	before_filter :signed_in_user, only: [:favorite, :destroy, :show]
 	def create
 		user = params[:user].permit(:first_name, :last_name, :email, :password, :password_confirmation)
 		u = User.new(user)

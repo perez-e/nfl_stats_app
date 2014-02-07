@@ -1,0 +1,10 @@
+<%= render 'layouts/nav' %>
+<%= render 'users/nav_stacked' %>
+
+<% if !@players.blank? %>
+<div class="jumbotron color">
+	<h1><%= @players.first.position.name %></h1>
+</div>
+
+<%= render "layouts/players" %>
+<% end %>

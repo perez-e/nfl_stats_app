@@ -18,6 +18,9 @@
 <% end %>
 
 <%= yield %>
-
+<div class="space"></div>
+<% if current_user %>
+	<%= render 'layouts/bottom_nav' %>
+<% end %>
 </body>
 </html>

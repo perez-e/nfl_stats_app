@@ -1,4 +1,5 @@
 class PlayersController < ApplicationController
+	before_filter :signed_in_user, only: [:favorite, :remove, :position]
 	def index
 	end
 
@@ -51,4 +52,10 @@ class PlayersController < ApplicationController
 
 		redirect_to action: :show
 	end
+
+	def position
+		p = Position.find_by_name(params[:name])
+		@players = p.players
+	end
+
 end

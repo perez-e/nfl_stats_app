@@ -1,0 +1,10 @@
+<div class="graph">
+	<% @players.each do |player|%>
+
+		<div class="favorite">
+			<img src="<%= player.img_url %>">
+			<h4><%= link_to "#{player.name} #{player.position.name} #{player.number}", "/players/#{player.nfl_id}", method: :get %></h4>
+		</div>
+
+	<% end %>
+</div>

@@ -65,6 +65,7 @@ svg {
 	height: 200px;
 	width: 400px;
 	float: left;
+	display: inline-block
 }
 
 .center {
@@ -100,6 +101,10 @@ svg {
 	position: absolute;
 	bottom: 0;
 	right: 0;
+}
+
+.graph {
+	display: inline-block;
 }
 
 

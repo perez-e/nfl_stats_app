@@ -10,4 +10,5 @@ NflApp::Application.routes.draw do
     delete '/sessions', to: 'sessions#destroy'
     get "/users/favorite", to: 'users#favorite'
     get '/users/:id', to: 'users#show'
+    get "/positions/:name", to: "players#position"
 end
