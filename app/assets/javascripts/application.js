@@ -84,7 +84,7 @@ function ReceivingAvg(player) {
 }
 
 nv.addGraph(function() {
-    var chart = nv.models.lineChart();
+    var chart = nv.models.multiBarChart();
 
     chart.xAxis
         .axisLabel("Year");
@@ -108,7 +108,7 @@ nv.addGraph(function() {
 });
 
 nv.addGraph(function() {
-    var chart = nv.models.lineChart();
+    var chart = nv.models.multiBarChart();
 
     chart.xAxis
         .axisLabel("Year");
@@ -132,7 +132,7 @@ nv.addGraph(function() {
 });
 
 nv.addGraph(function() {
-    var chart = nv.models.lineChart();
+    var chart = nv.models.multiBarChart();
 
     chart.xAxis
         .axisLabel("Year");
@@ -156,7 +156,7 @@ nv.addGraph(function() {
 });
 
 nv.addGraph(function() {
-    var chart = nv.models.lineChart();
+    var chart = nv.models.multiBarChart();
 
     chart.xAxis
         .axisLabel("Year");
@@ -248,7 +248,7 @@ function RushingAvg(player) {
 }
 
 nv.addGraph(function() {
-    var chart = nv.models.lineChart();
+    var chart = nv.models.multiBarChart();
 
     chart.xAxis
         .axisLabel("Year");
@@ -272,7 +272,7 @@ nv.addGraph(function() {
 });
 
 nv.addGraph(function() {
-    var chart = nv.models.lineChart();
+    var chart = nv.models.multiBarChart();
 
     chart.xAxis
         .axisLabel("Year");
@@ -296,7 +296,7 @@ nv.addGraph(function() {
 });
 
 nv.addGraph(function() {
-    var chart = nv.models.lineChart();
+    var chart = nv.models.multiBarChart();
 
     chart.xAxis
         .axisLabel("Year");
@@ -320,7 +320,7 @@ nv.addGraph(function() {
 });
 
 nv.addGraph(function() {
-    var chart = nv.models.lineChart();
+    var chart = nv.models.multiBarChart();
 
     chart.xAxis
         .axisLabel("Year");
@@ -429,7 +429,7 @@ function Rating(player) {
 }
 
 nv.addGraph(function() {
-    var chart = nv.models.lineChart();
+    var chart = nv.models.multiBarChart();
 
     chart.xAxis
         .axisLabel("Year");
@@ -453,7 +453,7 @@ nv.addGraph(function() {
 });
 
 nv.addGraph(function() {
-    var chart = nv.models.lineChart();
+    var chart = nv.models.multiBarChart();
 
     chart.xAxis
         .axisLabel("Year");
@@ -477,7 +477,7 @@ nv.addGraph(function() {
 });
 
 nv.addGraph(function() {
-    var chart = nv.models.lineChart();
+    var chart = nv.models.multiBarChart();
 
     chart.xAxis
         .axisLabel("Year");
@@ -501,7 +501,7 @@ nv.addGraph(function() {
 });
 
 nv.addGraph(function() {
-    var chart = nv.models.lineChart();
+    var chart = nv.models.multiBarChart();
 
     chart.xAxis
         .axisLabel("Year");
@@ -525,7 +525,7 @@ nv.addGraph(function() {
 });
 
 nv.addGraph(function() {
-    var chart = nv.models.lineChart();
+    var chart = nv.models.multiBarChart();
 
     chart.xAxis
         .axisLabel("Year");
@@ -568,14 +568,14 @@ function Tackles(player) {
 
     return [
         {
-            key: "Solo Tackles",
-            values: series1,
-            color: "#0000ff"
-        },
-        {
             key: "Assisted Tackles",
             values: series2,
             color: "#46A2CC"
+        },
+        {
+            key: "Solo Tackles",
+            values: series1,
+            color: "#0000ff"
         },
         {
             key: "Combined",
@@ -620,7 +620,7 @@ function DefensiveInt(player) {
 }
 
 nv.addGraph(function() {
-    var chart = nv.models.lineChart();
+    var chart = nv.models.multiBarChart();
 
     chart.xAxis
         .axisLabel("Year");
@@ -644,7 +644,7 @@ nv.addGraph(function() {
 });
 
 nv.addGraph(function() {
-    var chart = nv.models.lineChart();
+    var chart = nv.models.multiBarChart();
 
     chart.xAxis
         .axisLabel("Year");
@@ -668,7 +668,7 @@ nv.addGraph(function() {
 });
 
 nv.addGraph(function() {
-    var chart = nv.models.lineChart();
+    var chart = nv.models.multiBarChart();
 
     chart.xAxis
         .axisLabel("Year");
