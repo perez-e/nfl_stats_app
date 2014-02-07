@@ -6,10 +6,12 @@
 		<h3>College: <%= @player.college %></h3>
 		<h3><strong>Height:</strong> <%= @player.height %> <strong>Weight:</strong> <%= @player.weight %></h3>
 	</div>
+	<% if current_user %>
 	<% if current_user.players.include? @player %>
 	<%= button_to 'Remove', "/players/#{@player.nfl_id}", method: :delete, class: "btn btn-default btn-color btn-special" %>
 	<% else %>
 	<%= button_to 'Add Fav', "/players/#{@player.nfl_id}", method: :patch, class: "btn btn-default btn-color btn-special" %>
+	<% end %>
 	<% end %>
 </div>
 
