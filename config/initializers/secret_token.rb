@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-NflApp::Application.config.secret_key_base = 'a327b1e628e21ffe33427e3542dad6c5fffa7fff721e665a9ff0af9c05b48370569c519ee0736af6dcb4872adc60cc37cd5f07ac3ba69ba0528d273aef7fa732'
+NflApp::Application.config.secret_key_base = ENV['SECRET_KEY_BASE']
