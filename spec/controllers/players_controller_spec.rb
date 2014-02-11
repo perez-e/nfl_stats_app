@@ -42,6 +42,18 @@ describe PlayersController do
       end
     end
 
+    context "player in not in the database" do 
+      it "should be created" do 
+        p = mock_model('Player', name: "Antonio Cromartie")
+        p.stub(:season_passing_stats=)
+        p.stub(:season_receiving_stats=)
+        p.stub(:season_rushing_stats=)
+        p.stub(:season_defensive_stats=)
+        Player.should_receive(:create).and_return(p)
+        post :create, {player: {name: "cromartie" }}
+      end
+    end
+
   end
 
 
