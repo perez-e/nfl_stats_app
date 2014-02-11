@@ -49,6 +49,11 @@ gem 'bcrypt-ruby', '~> 3.1.2'
 
 ruby "2.0.0" 
 
+group :development, :test do 
+	gem 'rspec-rails'
+	gem 'dotenv-rails'
+end
+
 # Use unicorn as the app server
 # gem 'unicorn'
 
