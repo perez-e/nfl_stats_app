@@ -32,6 +32,8 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+gem 'psych', '~> 2.0.5'
+
 gem 'nokogiri'
 
 group :development do
