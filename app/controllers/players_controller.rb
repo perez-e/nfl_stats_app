@@ -5,10 +5,6 @@ class PlayersController < ApplicationController
 
 	def show
 		@player = Player.find_by_nfl_id(params[:nfl_id])
-		gon.player_receiving = @player.season_receiving_stats.order(year: :asc)
-		gon.player_rushing = @player.season_rushing_stats.order(year: :asc)
-		gon.player_passing = @player.season_passing_stats.order(year: :asc)
-		gon.player_defensive = @player.season_defensive_stats.order(year: :asc)
 	end
 
 	def search
@@ -17,6 +13,7 @@ class PlayersController < ApplicationController
 
 		respond_to do |f|
 			f.html { redirect_to action: :show, nfl_id: player.nfl_id }
+			f.json { render json: player.to_json( include: [:season_passing_stats, :season_receiving_stats, :season_rushing_stats, :season_defensive_stats] ) }
 		end
 	end
 

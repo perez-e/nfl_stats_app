@@ -15,554 +15,142 @@
 //= require turbolinks
 //= require_tree .
 
-function ReceivingYds(player) {
+
+$(document).on('ready page:load', function(){
+
+  var params = {player: {name: $('#player-name').text() } }
+
+  $.ajax({type: "get", url: "/players.json", data: params}).done(function(response){
+
+    nv.addGraph(function() {
+      var chart = nv.models.multiBarChart();
+
+      chart.xAxis
+          .axisLabel("Year");
+
+      chart.yAxis
+          .axisLabel("Y-axis Label")
+          .tickFormat(d3.format("d"))
+          ;
+
+      // Receiving Graphs
+      d3.select("svg.receiving-yds")
+          .datum(FootballStats(response.season_receiving_stats, 'yds', 'Receiving Yards'))
+          .transition().duration(500).call(chart);
+
+      d3.select("svg.receiving-td")
+        .datum(FootballStats(response.season_receiving_stats, 'td', 'Receiving TD'))
+        .transition().duration(500).call(chart);
+
+      d3.select("svg.receiving-yds-g")
+        .datum(FootballStats(response.season_receiving_stats, 'yds_p_g', 'Receiving Yds Per Game'))
+        .transition().duration(500).call(chart);
+
+      d3.select("svg.receiving-avg")
+        .datum(FootballStats(response.season_receiving_stats, 'avg_rec', 'Avg Yds Per Reception'))
+        .transition().duration(500).call(chart);
+
+
+      // Rushing Graphs
+      d3.select("svg.rushing-yds")
+          .datum(FootballStats(response.season_rushing_stats, 'yds', 'Rushing Yards'))
+          .transition().duration(500).call(chart);
+
+      d3.select("svg.rushing-td")
+        .datum(FootballStats(response.season_rushing_stats, 'td', 'Rushing TD'))
+        .transition().duration(500).call(chart);
+
+      d3.select("svg.rushing-yds-g")
+        .datum(FootballStats(response.season_rushing_stats, 'yds_p_g', 'Rushing Yds Per Game'))
+        .transition().duration(500).call(chart);
+
+      d3.select("svg.rushing-avg")
+        .datum(FootballStats(response.season_rushing_stats, 'avg_rush', 'Avg Yds Per Rush'))
+        .transition().duration(500).call(chart);
+
+
+      // Passing Graphs
+      d3.select("svg.passing-yds")
+        .datum(FootballStats(response.season_passing_stats, 'yds', 'Passing Yards'))
+        .transition().duration(500).call(chart);
+
+      d3.select("svg.passing-td")
+        .datum(FootballStats(response.season_passing_stats, 'td', 'Passing TD'))
+        .transition().duration(500).call(chart);
+
+      d3.select("svg.passing-yds-g")
+        .datum(FootballStats(response.season_passing_stats, 'yds_p_g', 'Passing Yds Per Game'))
+        .transition().duration(500).call(chart);
+
+      d3.select("svg.interception")
+        .datum(FootballStats(response.season_passing_stats, 'int', 'Interceptions'))
+        .transition().duration(500).call(chart);
+
+      d3.select("svg.rating")
+        .datum(FootballStats(response.season_passing_stats, 'rating', 'QB Rating'))
+        .transition().duration(500).call(chart);
+
+
+      // Defense Graphs
+      d3.select("svg.tackles")
+        .datum(Tackles(response.season_defensive_stats))
+        .transition().duration(500).call(chart);
+
+      d3.select("svg.sacks")
+        .datum(FootballStats(response.season_defensive_stats, 'sck', 'Sacks'))
+        .transition().duration(500).call(chart);
+
+      d3.select("svg.d-int")
+        .datum(FootballStats(response.season_defensive_stats, 'int', 'Defensive Interceptions'))
+        .transition().duration(500).call(chart);
+
+      nv.utils.windowResize(
+              function() {
+                  chart.update();
+              }
+          );
+
+      return chart;
+    });
+
+  })
+
+
+});
+
+
+function FootballStats(player_data, category, key) {
     var series1 = [];
-    for(var i =0; i < player.length; i ++) {
+    for(var i =0; i < player_data.length; i ++) {
         series1.push({
-            x: player[i].year, y: player[i].yds
+            x: player_data[i].year, y: player_data[i][category]
         });
     }
 
     return [
         {
-            key: "Receiving Yards",
+            key: key,
             values: series1,
             color: "#0000ff"
         }
     ];
 }
 
-function ReceivingTD(player) {
-    var series1 = [];
-    for(var i =0; i < player.length; i ++) {
-        series1.push({
-            x: player[i].year, y: player[i].td
-        });
-    }
-
-    return [
-        {
-            key: "Receiving TD",
-            values: series1,
-            color: "#0000ff"
-        }
-    ];
-}
-
-function ReceivingYdsPerGame(player) {
-    var series1 = [];
-    for(var i =0; i < player.length; i ++) {
-        series1.push({
-            x: player[i].year, y: player[i].yds_p_g
-        });
-    }
-
-    return [
-        {
-            key: "Receiving Yards Per Game",
-            values: series1,
-            color: "#0000ff"
-        }
-    ];
-}
-
-function ReceivingAvg(player) {
-    var series1 = [];
-    for(var i =0; i < player.length; i ++) {
-        series1.push({
-            x: player[i].year, y: player[i].avg_rec
-        });
-    }
-
-    return [
-        {
-            key: "Avg Yards Per Reception",
-            values: series1,
-            color: "#0000ff"
-        }
-    ];
-}
-
-nv.addGraph(function() {
-    var chart = nv.models.multiBarChart();
-
-    chart.xAxis
-        .axisLabel("Year");
-
-    chart.yAxis
-        .axisLabel("Y-axis Label")
-        .tickFormat(d3.format("d"))
-        ;
-
-    d3.select("svg.receiving-yds")
-        .datum(ReceivingYds(gon.player_receiving))
-        .transition().duration(500).call(chart);
-
-    nv.utils.windowResize(
-            function() {
-                chart.update();
-            }
-        );
-
-    return chart;
-});
-
-nv.addGraph(function() {
-    var chart = nv.models.multiBarChart();
-
-    chart.xAxis
-        .axisLabel("Year");
-
-    chart.yAxis
-        .axisLabel("Y-axis Label")
-        .tickFormat(d3.format("d"))
-        ;
-
-    d3.select("svg.receiving-td")
-        .datum(ReceivingTD(gon.player_receiving))
-        .transition().duration(500).call(chart);
-
-    nv.utils.windowResize(
-            function() {
-                chart.update();
-            }
-        );
-
-    return chart;
-});
-
-nv.addGraph(function() {
-    var chart = nv.models.multiBarChart();
-
-    chart.xAxis
-        .axisLabel("Year");
-
-    chart.yAxis
-        .axisLabel("Y-axis Label")
-        .tickFormat(d3.format("d"))
-        ;
-
-    d3.select("svg.receiving-yds-g")
-        .datum(ReceivingYdsPerGame(gon.player_receiving))
-        .transition().duration(500).call(chart);
-
-    nv.utils.windowResize(
-            function() {
-                chart.update();
-            }
-        );
-
-    return chart;
-});
-
-nv.addGraph(function() {
-    var chart = nv.models.multiBarChart();
-
-    chart.xAxis
-        .axisLabel("Year");
-
-    chart.yAxis
-        .axisLabel("Y-axis Label")
-        .tickFormat(d3.format("d"))
-        ;
-
-    d3.select("svg.receiving-avg")
-        .datum(ReceivingAvg(gon.player_receiving))
-        .transition().duration(500).call(chart);
-
-    nv.utils.windowResize(
-            function() {
-                chart.update();
-            }
-        );
-
-    return chart;
-});
-
-function RushingYds(player) {
-    var series1 = [];
-    for(var i =0; i < player.length; i ++) {
-        series1.push({
-            x: player[i].year, y: player[i].yds
-        });
-    }
-
-    return [
-        {
-            key: "Rushing Yards",
-            values: series1,
-            color: "#0000ff"
-        }
-    ];
-}
-
-function RushingTD(player) {
-    var series1 = [];
-    for(var i =0; i < player.length; i ++) {
-        series1.push({
-            x: player[i].year, y: player[i].td
-        });
-    }
-
-    return [
-        {
-            key: "Rushing TD",
-            values: series1,
-            color: "#0000ff"
-        }
-    ];
-}
-
-function RushingYdsPerGame(player) {
-    var series1 = [];
-    for(var i =0; i < player.length; i ++) {
-        series1.push({
-            x: player[i].year, y: player[i].yds_p_g
-        });
-    }
-
-    return [
-        {
-            key: "Rushing Yards Per Game",
-            values: series1,
-            color: "#0000ff"
-        }
-    ];
-}
-
-function RushingAvg(player) {
-    var series1 = [];
-    for(var i =0; i < player.length; i ++) {
-        series1.push({
-            x: player[i].year, y: player[i].avg_rush
-        });
-    }
-
-    return [
-        {
-            key: "Avg Yards Per Rush",
-            values: series1,
-            color: "#0000ff"
-        }
-    ];
-}
-
-nv.addGraph(function() {
-    var chart = nv.models.multiBarChart();
-
-    chart.xAxis
-        .axisLabel("Year");
-
-    chart.yAxis
-        .axisLabel("Y-axis Label")
-        .tickFormat(d3.format("d"))
-        ;
-
-    d3.select("svg.rushing-yds")
-        .datum(RushingYds(gon.player_rushing))
-        .transition().duration(500).call(chart);
-
-    nv.utils.windowResize(
-            function() {
-                chart.update();
-            }
-        );
-
-    return chart;
-});
-
-nv.addGraph(function() {
-    var chart = nv.models.multiBarChart();
-
-    chart.xAxis
-        .axisLabel("Year");
-
-    chart.yAxis
-        .axisLabel("Y-axis Label")
-        .tickFormat(d3.format("d"))
-        ;
-
-    d3.select("svg.rushing-td")
-        .datum(RushingTD(gon.player_rushing))
-        .transition().duration(500).call(chart);
-
-    nv.utils.windowResize(
-            function() {
-                chart.update();
-            }
-        );
-
-    return chart;
-});
-
-nv.addGraph(function() {
-    var chart = nv.models.multiBarChart();
-
-    chart.xAxis
-        .axisLabel("Year");
-
-    chart.yAxis
-        .axisLabel("Y-axis Label")
-        .tickFormat(d3.format("d"))
-        ;
-
-    d3.select("svg.rushing-yds-g")
-        .datum(RushingYdsPerGame(gon.player_rushing))
-        .transition().duration(500).call(chart);
-
-    nv.utils.windowResize(
-            function() {
-                chart.update();
-            }
-        );
-
-    return chart;
-});
-
-nv.addGraph(function() {
-    var chart = nv.models.multiBarChart();
-
-    chart.xAxis
-        .axisLabel("Year");
-
-    chart.yAxis
-        .axisLabel("Y-axis Label")
-        .tickFormat(d3.format("d"))
-        ;
-
-    d3.select("svg.rushing-avg")
-        .datum(RushingAvg(gon.player_rushing))
-        .transition().duration(500).call(chart);
-
-    nv.utils.windowResize(
-            function() {
-                chart.update();
-            }
-        );
-
-    return chart;
-});
-
-function PassingYds(player) {
-    var series1 = [];
-    for(var i =0; i < player.length; i ++) {
-        series1.push({
-            x: player[i].year, y: player[i].yds
-        });
-    }
-
-    return [
-        {
-            key: "Passing Yards",
-            values: series1,
-            color: "#0000ff"
-        }
-    ];
-}
-
-function PassingTD(player) {
-    var series1 = [];
-    for(var i =0; i < player.length; i ++) {
-        series1.push({
-            x: player[i].year, y: player[i].td
-        });
-    }
-
-    return [
-        {
-            key: "Passing TD",
-            values: series1,
-            color: "#0000ff"
-        }
-    ];
-}
-
-function PassingYdsPerGame(player) {
-    var series1 = [];
-    for(var i =0; i < player.length; i ++) {
-        series1.push({
-            x: player[i].year, y: player[i].yds_p_g
-        });
-    }
-
-    return [
-        {
-            key: "Passing Yards Per Game",
-            values: series1,
-            color: "#0000ff"
-        }
-    ];
-}
-
-function PassingInt(player) {
-    var series1 = [];
-    for(var i =0; i < player.length; i ++) {
-        series1.push({
-            x: player[i].year, y: player[i].int
-        });
-    }
-
-    return [
-        {
-            key: "Interceptions",
-            values: series1,
-            color: "#0000ff"
-        }
-    ];
-}
-
-function Rating(player) {
-    var series1 = [];
-    for(var i =0; i < player.length; i ++) {
-        series1.push({
-            x: player[i].year, y: player[i].rating
-        });
-    }
-
-    return [
-        {
-            key: "QB Rating",
-            values: series1,
-            color: "#0000ff"
-        }
-    ];
-}
-
-nv.addGraph(function() {
-    var chart = nv.models.multiBarChart();
-
-    chart.xAxis
-        .axisLabel("Year");
-
-    chart.yAxis
-        .axisLabel("Y-axis Label")
-        .tickFormat(d3.format("d"))
-        ;
-
-    d3.select("svg.passing-yds")
-        .datum(PassingYds(gon.player_passing))
-        .transition().duration(500).call(chart);
-
-    nv.utils.windowResize(
-            function() {
-                chart.update();
-            }
-        );
-
-    return chart;
-});
-
-nv.addGraph(function() {
-    var chart = nv.models.multiBarChart();
-
-    chart.xAxis
-        .axisLabel("Year");
-
-    chart.yAxis
-        .axisLabel("Y-axis Label")
-        .tickFormat(d3.format("d"))
-        ;
-
-    d3.select("svg.passing-td")
-        .datum(PassingTD(gon.player_passing))
-        .transition().duration(500).call(chart);
-
-    nv.utils.windowResize(
-            function() {
-                chart.update();
-            }
-        );
-
-    return chart;
-});
-
-nv.addGraph(function() {
-    var chart = nv.models.multiBarChart();
-
-    chart.xAxis
-        .axisLabel("Year");
-
-    chart.yAxis
-        .axisLabel("Y-axis Label")
-        .tickFormat(d3.format("d"))
-        ;
-
-    d3.select("svg.passing-yds-g")
-        .datum(PassingYdsPerGame(gon.player_passing))
-        .transition().duration(500).call(chart);
-
-    nv.utils.windowResize(
-            function() {
-                chart.update();
-            }
-        );
-
-    return chart;
-});
-
-nv.addGraph(function() {
-    var chart = nv.models.multiBarChart();
-
-    chart.xAxis
-        .axisLabel("Year");
-
-    chart.yAxis
-        .axisLabel("Y-axis Label")
-        .tickFormat(d3.format("d"))
-        ;
-
-    d3.select("svg.interception")
-        .datum(PassingInt(gon.player_passing))
-        .transition().duration(500).call(chart);
-
-    nv.utils.windowResize(
-            function() {
-                chart.update();
-            }
-        );
-
-    return chart;
-});
-
-nv.addGraph(function() {
-    var chart = nv.models.multiBarChart();
-
-    chart.xAxis
-        .axisLabel("Year");
-
-    chart.yAxis
-        .axisLabel("Y-axis Label")
-        .tickFormat(d3.format("d"))
-        ;
-
-    d3.select("svg.rating")
-        .datum(Rating(gon.player_passing))
-        .transition().duration(500).call(chart);
-
-    nv.utils.windowResize(
-            function() {
-                chart.update();
-            }
-        );
-
-    return chart;
-});
-
-function Tackles(player) {
+function Tackles(player_data) {
     var series1 = [];
     var series2 = [];
     var series3 = [];
-    for(var i =0; i < player.length; i ++) {
+    for(var i =0; i < player_data.length; i ++) {
         series1.push({
-            x: player[i].year, y: player[i].solo
+            x: player_data[i].year, y: player_data[i].solo
         });
 
         series2.push({
-            x: player[i].year, y: player[i].ast
+            x: player_data[i].year, y: player_data[i].ast
         });
 
         series3.push({
-            x: player[i].year, y: player[i].comb
+            x: player_data[i].year, y: player_data[i].comb
         });
     }
 
@@ -585,109 +173,4 @@ function Tackles(player) {
     ];
 }
 
-function Sacks(player) {
-    var series1 = [];
-    for(var i =0; i < player.length; i ++) {
-        series1.push({
-            x: player[i].year, y: player[i].sck
-        });
-    }
-
-    return [
-        {
-            key: "Sacks",
-            values: series1,
-            color: "#0000ff"
-        }
-    ];
-}
-
-function DefensiveInt(player) {
-    var series1 = [];
-    for(var i =0; i < player.length; i ++) {
-        series1.push({
-            x: player[i].year, y: player[i].int
-        });
-    }
-
-    return [
-        {
-            key: "Defensive Interceptions",
-            values: series1,
-            color: "#0000ff"
-        }
-    ];
-}
-
-nv.addGraph(function() {
-    var chart = nv.models.multiBarChart();
-
-    chart.xAxis
-        .axisLabel("Year");
-
-    chart.yAxis
-        .axisLabel("Y-axis Label")
-        .tickFormat(d3.format("d"))
-        ;
-
-    d3.select("svg.tackles")
-        .datum(Tackles(gon.player_defensive))
-        .transition().duration(500).call(chart);
-
-    nv.utils.windowResize(
-            function() {
-                chart.update();
-            }
-        );
-
-    return chart;
-});
-
-nv.addGraph(function() {
-    var chart = nv.models.multiBarChart();
-
-    chart.xAxis
-        .axisLabel("Year");
-
-    chart.yAxis
-        .axisLabel("Y-axis Label")
-        .tickFormat(d3.format("d"))
-        ;
-
-    d3.select("svg.sacks")
-        .datum(Sacks(gon.player_defensive))
-        .transition().duration(500).call(chart);
-
-    nv.utils.windowResize(
-            function() {
-                chart.update();
-            }
-        );
-
-    return chart;
-});
-
-nv.addGraph(function() {
-    var chart = nv.models.multiBarChart();
-
-    chart.xAxis
-        .axisLabel("Year");
-
-    chart.yAxis
-        .axisLabel("Y-axis Label")
-        .tickFormat(d3.format("d"))
-        ;
-
-    d3.select("svg.d-int")
-        .datum(DefensiveInt(gon.player_defensive))
-        .transition().duration(500).call(chart);
-
-    nv.utils.windowResize(
-            function() {
-                chart.update();
-            }
-        );
-
-    return chart;
-});
 

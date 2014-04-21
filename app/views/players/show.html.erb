@@ -2,7 +2,7 @@
 <div class="player-info">
 	<img src='<%= @player.img_url %>' class='player-pic' />
 	<div class='color player'>
-		<h1><%= @player.name %> <p><%= @player.position.name %> <%= @player.number %></p></h1>
+		<h1><span id="player-name"><%= @player.name %></span> <p><%= @player.position.name %> <%= @player.number %></p></h1>
 		<h3>College: <%= @player.college %></h3>
 		<h3><strong>Height:</strong> <%= @player.height %> <strong>Weight:</strong> <%= @player.weight %></h3>
 	</div>
