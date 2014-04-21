@@ -1,6 +1,37 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+	
+.position-links {
+	list-style-type: none;
+	padding: 0;
+}
+
+.position-links > li {
+	float: left;
+	padding: 10px;
+	display: inline-block;
+	margin-top: 5px;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.position-links > li > a {
+	color: #b2152b;
+}
+
+.position-links > li > a:hover {
+	color: #FFF50A;
+	text-decoration: none;
+}
+
+.bottom-nav {
+	height: 50px;
+	width: 89%;
+	position: fixed;
+	bottom: 0;
+	background-color: #46A2CC;
+}
 
  #userPill {
 	float: left;
