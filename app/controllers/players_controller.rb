@@ -11,6 +11,15 @@ class PlayersController < ApplicationController
 		gon.player_defensive = @player.season_defensive_stats.order(year: :asc)
 	end
 
+	def search
+		player_name = params[:player][:name]
+		player = Player.find_by(name: player_name)
+
+		respond_to do |f|
+			f.html { redirect_to action: :show, nfl_id: player.nfl_id }
+		end
+	end
+
 	def favorite 
 		p = Player.find_by_nfl_id(params[:nfl_id])
 		user = current_user
