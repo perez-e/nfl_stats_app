@@ -1,6 +1,6 @@
 <%= render partial: "layouts/nav" %>
 <div class='index-container'>
-	<h1 class="color">Welcome to the NFL Database</h1>
+	<h1 class="color">Welcome to the NFLStats database</h1>
 	<%= form_for :player, url: "/players", method: :get do |f| %>
 		<div class="form-group">
 			<%= f.text_field :name, placeholder: "Search any player" %>
