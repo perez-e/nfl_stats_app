@@ -24,11 +24,8 @@ class Player < ActiveRecord::Base
   has_many :season_rushing_stats
   has_many :season_defensive_stats
 
-	def self.player_info(player)
+	def self.player_info(player_url)
 		info = {}
-		p = find_current_player_url(player)
-		return info if p.nil?
-		player_url = p + "/profile"
 		page = Nokogiri::HTML(Typhoeus.get(player_url).body)
 
 		info[:nfl_id] = player_url.split("/")[-2]
@@ -37,16 +34,14 @@ class Player < ActiveRecord::Base
 		info[:college] = player_college(page)
 		info[:height] = player_height(page)
 		info[:weight] = player_weight(page)
-		info[:position_id] = player_position(page).id
+		info[:position_id] = player_position(page)
 		info[:number] = player_number(page)
 		return info
 	end
 
 	def self.careerstats(player, label)
 		info = []
-		p = find_current_player_url(player)
-		return info if p.nil?
-		player_url = p + "/careerstats"
+		player_url = "www.nfl.com/player/" + player.name.downcase.delete(' ') + "/" + player.nfl_id.to_s + "/careerstats"
 		page = Nokogiri::HTML(Typhoeus.get(player_url).body)
 
 		table = page.xpath("//table[contains(@summary,'#{label}')]/tbody/tr[not(@class)]")
@@ -65,20 +60,6 @@ class Player < ActiveRecord::Base
 	end
 
 	private
-
-  	def self.find_current_player_url(player)
-		player = player.split.join("+")
-		url = "http://www.nfl.com/players/search?category=name&filter=#{player}&playerType=current"
-		search_page = Nokogiri::HTML(Typhoeus.get(url).body)
-		server = "http://www.nfl.com"
-		unless search_page.xpath("//table[@id='result']/tbody/tr/td[3]/a").empty?
-			server<<search_page.xpath("//table[@id='result']/tbody/tr/td[3]/a").first.attributes['href'].value
-			server.slice!("/profile")
-			server
-		else
-			nil
-		end
-	end
 
 	def self.player_name(noko)
 		name = noko.xpath("//div[@class='player-info']//span[@class='player-name']")
@@ -108,7 +89,8 @@ class Player < ActiveRecord::Base
 	def self.player_position(noko)
 		position = noko.xpath("//div[@class='player-info']//span[@class='player-number']")
 		pos = correct_position(position.text.split[1])
-		Position.find_by_name(pos)
+		pos = Position.find_by_name(pos)
+		return pos ? pos.id : nil
 	end
 
 	def self.correct_position(position)
