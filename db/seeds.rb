@@ -7,14 +7,14 @@ end
 roster_URL = "http://www.nfl.com/teams/buffalobills/roster?team="
 nfl_URL="http://www.nfl.com"
 
-nfl_teams = ["BAL", "CIN", "CLE", "PIT", 
-							"HOU", "IND", "JAC", "TEN",
+nfl_teams = ["BAL", "CIN", "PIT", 
+							"HOU", "IND", "TEN",
 							"BUF", "MIA", "NE", "NYJ",
-							"DEN", "KC", "OAK", "SD", 
+							"DEN", "KC", "OAK",  
 							"CHI", "DET", "GB", "MIN", 
-							"ATL", "CAR", "NO", "TB", 
-							"DAL", "NYG", "PHI", "WAS", 
-							"ARI", "SF", "SEA", "STL"
+							"ATL", "CAR", "NO",  
+							"DAL", "NYG", "WAS", 
+							"ARI", "SF", "SEA",
 						]
 
 
