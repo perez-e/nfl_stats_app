@@ -31,6 +31,9 @@ class Player < ActiveRecord::Base
 		info[:nfl_id] = player_url.split("/")[-2]
 		info[:img_url] = player_image(page)
 		info[:name] = player_name(page)
+		info[:first_name] = info[:name][0]
+		info[:last_name] = info[:name][1..-1].join(" ")
+		info.delete(:name)
 		info[:college] = player_college(page)
 		info[:height] = player_height(page)
 		info[:weight] = player_weight(page)
@@ -63,7 +66,8 @@ class Player < ActiveRecord::Base
 
 	def self.player_name(noko)
 		name = noko.xpath("//div[@class='player-info']//span[@class='player-name']")
-		name[0].text.chop.chop
+		name_string = name[0].text.chop.chop
+		name_string.split
 	end
 
 	def self.player_college(noko)
