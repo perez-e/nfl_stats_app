@@ -11,13 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140206195745) do
+ActiveRecord::Schema.define(version: 20140520213417) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "players", force: true do |t|
-    t.string   "name"
     t.string   "height"
     t.string   "weight"
     t.string   "college"
@@ -27,6 +26,8 @@ ActiveRecord::Schema.define(version: 20140206195745) do
     t.datetime "updated_at"
     t.string   "img_url"
     t.integer  "nfl_id"
+    t.string   "first_name"
+    t.string   "last_name"
   end
 
   add_index "players", ["position_id"], name: "index_players_on_position_id", using: :btree
