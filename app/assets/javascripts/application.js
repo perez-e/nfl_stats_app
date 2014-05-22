@@ -18,10 +18,10 @@
 
 $(document).on('ready page:load', function(){
 
-  var params = {player: {name: $('#player-name').text() } }
+  var nfl_id = $('#player-name').data().nfl_id
 
-  $.ajax({type: "get", url: "/players.json", data: params}).done(function(response){
-
+  $.ajax({type: "get", url: "/players/"+ nfl_id + ".json"}).done(function(response){
+    
     nv.addGraph(function() {
       var chart = nv.models.multiBarChart();
 

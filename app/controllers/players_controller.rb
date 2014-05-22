@@ -5,6 +5,12 @@ class PlayersController < ApplicationController
 
 	def show
 		@player = Player.find_by_nfl_id(params[:nfl_id])
+
+		respond_to do |f|
+			f.html
+			f.json { render json: @player.to_json( include: [:season_passing_stats, :season_receiving_stats, :season_rushing_stats, :season_defensive_stats] ) }
+		end
+
 	end
 
 	def search
