@@ -8,12 +8,15 @@ class PlayersController < ApplicationController
 	end
 
 	def search
-		player_name = params[:player][:name]
-		player = Player.find_by(name: player_name)
+		player_name = params[:player][:name].split
+		first_name = player_name[0].capitalize
+		last_name = player_name[1..-1].join(" ").capitalize
+
+		@players = Player.where("first_name = ? OR last_name = ? OR first_name = ? OR last_name = ?", first_name, last_name, last_name, first_name)
 
 		respond_to do |f|
-			f.html { redirect_to action: :show, nfl_id: player.nfl_id }
-			f.json { render json: player.to_json( include: [:season_passing_stats, :season_receiving_stats, :season_rushing_stats, :season_defensive_stats] ) }
+			f.html
+			f.json { render json: @players.to_json( include: [:season_passing_stats, :season_receiving_stats, :season_rushing_stats, :season_defensive_stats] ) }
 		end
 	end
 
