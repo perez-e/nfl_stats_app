@@ -44,7 +44,8 @@ class Player < ActiveRecord::Base
 
 	def self.careerstats(player, label)
 		info = []
-		player_url = "www.nfl.com/player/" + player.name.downcase.delete(' ') + "/" + player.nfl_id.to_s + "/careerstats"
+		player_url = "www.nfl.com/player/" + player.first_name.downcase.delete(' ') + player.last_name.downcase.delete(" ") + 
+		"/" + player.nfl_id.to_s + "/careerstats"
 		page = Nokogiri::HTML(Typhoeus.get(player_url).body)
 
 		table = page.xpath("//table[contains(@summary,'#{label}')]/tbody/tr[not(@class)]")
