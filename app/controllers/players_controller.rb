@@ -14,9 +14,9 @@ class PlayersController < ApplicationController
 	end
 
 	def search
-		player_name = params[:player][:name].split
-		first_name = player_name[0].capitalize
-		last_name = player_name[1..-1].join(" ").capitalize
+		@player_name = params[:player][:name].split
+		first_name = @player_name[0].capitalize
+		last_name = @player_name[1..-1].join(" ").capitalize
 
 		@players = Player.where("first_name = ? OR last_name = ? OR first_name = ? OR last_name = ?", first_name, last_name, last_name, first_name)
 
