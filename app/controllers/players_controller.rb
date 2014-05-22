@@ -30,7 +30,7 @@ class PlayersController < ApplicationController
 		p = Player.find_by_nfl_id(params[:nfl_id])
 		user = current_user
 		user.players << p
-		flash[:success] = "#{p.name} was added!"
+		flash[:success] = "#{p.first_name} #{p.last_name} was added!"
 
 		redirect_to action: :show
 	end
@@ -39,7 +39,7 @@ class PlayersController < ApplicationController
 		p = Player.find_by_nfl_id(params[:nfl_id])
 		user = current_user
 		user.players.destroy p
-		flash[:success] = "#{p.name} was destroyed!"
+		flash[:success] = "#{p.first_name} #{p.last_name} was destroyed!"
 
 		redirect_to action: :show
 	end
